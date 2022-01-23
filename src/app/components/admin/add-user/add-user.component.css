@@ -1,0 +1,28 @@
+.user-header {
+  border-bottom: #00a1de 1px solid;
+}
+
+.request {
+  border: #00a1de 1px solid;
+  padding: 1rem;
+}
+
+button {
+  float: right;
+  margin-top: 18px;
+}
+
+select {
+  width: 100%;
+  border-radius: 4px;
+}
+
+input {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.invalidForm {
+  width: 100%;
+  border-bottom: #00a1de 1px solid;
+}

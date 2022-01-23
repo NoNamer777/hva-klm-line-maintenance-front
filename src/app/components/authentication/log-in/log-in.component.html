@@ -1,0 +1,24 @@
+
+
+<form (ngSubmit)="onSigIn(f)" #f="ngForm">
+
+
+    <div class="main">
+      <div *ngIf="errorMessage" class="incorrect">{{ errorMessage }}</div>
+      <div class="loginText ">Login</div>
+        <input type="text" placeholder="User ID" ngModel name="userID" required #userID="ngModel">
+        <p class="help-block" *ngIf="!userID.valid && userID.touched"> Please enter a valid ID!</p>
+
+        <input type="password" placeholder="Password" ngModel name="password" required minlength="5"
+               #password="ngModel">
+        <p class="help-block" *ngIf="! password.valid && password.touched || password.pristine && password.touched &&
+             !f.submitted">Please enter a valid password!</p>
+
+        <button id="loginKnop" class="submit" type="submit" [disabled]="!f.valid" >Login</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+        <p class="forgot" (click)="pop()"><a href="#">Forgot Password?</a></p>
+
+    </div>
+  <div></div>
+</form>

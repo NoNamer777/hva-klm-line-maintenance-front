@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="request">
+    <div class="user-header">
+      <h3>Add new user</h3>
+    </div>
+
+    <p class="invalidForm" *ngIf="invalid">You forgot to fill in something</p>
+    <p class="invalidForm" *ngIf="noneMatchingPasswords">The passwords don't match</p>
+
+    <form [formGroup]="userForm">
+      <div class="row">
+        <div class="col-4">
+          <label for="name">Name:</label>
+          <input type="text" name="title" id="name" formControlName="name" required>
+        </div>
+
+        <div class="col-4">
+          <label for="role">Role:</label>
+          <select id="role" formControlName="role" required>
+            <option *ngFor="let role of roles" [ngValue]="role.role">{{ role.role }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password" required>
+        </div>
+
+        <div class="col-4">
+          <label for="validatePassword">Validate password:</label>
+          <input type="password" id="validatePassword" formControlName="validatePassword" required>
+        </div>
+      </div>
+    </form>
+
+    <button (click)="onCancel()" class="btn btn-danger">Back</button>
+    <button (click)="onAddUser()" class="btn btn-klm">Add user</button>
+  </div>
+</div>

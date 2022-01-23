@@ -1,0 +1,42 @@
+<nav class="nav nav-pills">
+
+  <!--Mechanic Taps; only visible for Ground Engineers and Admins-->
+
+
+  <div *ngIf=" isLoggedIn() && (isUserGE() || isUserADM())">
+    <a class="nav-link" routerLinkActive="active"  routerLink="new-request">New Request</a>
+    <a class="nav-link" routerLinkActive="active" routerLink="current-requests">Current Requests</a>
+  </div>
+
+  <!--Runner Taps; only visible for Runners and Admins-->
+<!--  <div *ngIf="(authenticationService.currentUser.role === 'RUN' && authenticationService.currentUser.role === 'ADM') && isLoggedIn()">-->
+  <div *ngIf=" isLoggedIn() && (isUserRUN() || isUserADM())">
+
+    <a class="nav-link" routerLinkActive="active" routerLink="requests-overview">Mechanic Requests</a>
+    <a class="nav-link" routerLinkActive="active" routerLink="my-runs">My Runs</a>
+  </div>
+
+<!--  <div *ngIf="authenticationService.currentUser.role === 'ADM' && isLoggedIn()">-->
+  <div *ngIf="isLoggedIn() && isUserADM()">
+
+    <a class="nav-link" routerLinkActive="active" routerLink="equipment">Equipment</a>
+    <a class="nav-link" routerLinkActive="active" routerLink="users">Users</a>
+  </div>
+
+
+  <ng-template [ngIf]="!isLoggedIn()"  >
+    <div class="right">
+      <a class="nav-link" routerLink="/log-in" routerLinkActive="active">Log in</a>
+    </div>
+  </ng-template>
+
+  <div *ngIf="isLoggedIn()"  class="right" >
+    <a class="nav-link" routerLinkActive="active"(click)="onLogOut()" *ngIf="isLoggedIn()">Log out</a>
+    <a class="nav-link" routerLinkActive="active" routerLink="home"> <mat-icon aria-hidden="false" aria-label="Example home icon">account_box</mat-icon></a>
+  </div>
+
+
+
+
+</nav>
+

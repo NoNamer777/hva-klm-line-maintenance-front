@@ -1,0 +1,65 @@
+<div mat-dialog-title>
+  <h1>Equipment details</h1>
+</div>
+<div mat-dialog-content>
+  <p class="invalidForm" *ngIf="invalid">The description of the status is missing</p>
+  <p class="invalidForm" *ngIf="invalidId">The id already exists</p>
+  <form [formGroup]="equipmentForm">
+    <div class="row">
+      <div class="col-4">
+        <label>Serialnumber:</label>
+        <p>{{ equipment.serialNumber }}</p>
+      </div>
+
+      <div class="col-4">
+        <label for="id">Id:</label>
+        <p *ngIf="!editable">{{ equipment.id }}</p>
+
+        <div *ngIf="editable">
+          <p class="equipmentId">{{ getAbbreviation() }}-</p>
+          <input type="number" id="id" formControlName="id">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <label for="typeGroup">Group</label>
+        <p *ngIf="!editable">{{ equipment.type.group }}</p>
+        <select id="typeGroup" formControlName="typeGroup" *ngIf="editable">
+          <option *ngFor="let typeGroup of typeGroups" [ngValue]="typeGroup">{{ typeGroup }}</option>
+        </select>
+      </div>
+
+      <div class="col-4">
+        <label for="typeSubgroup">Subgroup</label>
+        <p *ngIf="!editable">{{ equipment.type.subgroup }}</p>
+        <select id="typeSubgroup" formControlName="typeSubgroup" *ngIf="editable">
+          <option selected="selected">N/A</option>
+          <option *ngFor="let typeSubGroup of typeSubgroups" [ngValue]="typeSubGroup">{{ typeSubGroup }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <label for="status">Status:</label>
+        <p *ngIf="!editable">{{ equipment.status }}</p>
+        <select id="status" formControlName="status" *ngIf="editable">
+          <option *ngFor="let status of statuses" [ngValue]="status" [disabled]="status === 'Inuse'">{{ status }}</option>
+        </select>
+      </div>
+
+      <div class="col-6">
+        <label for="statusDescription" *ngIf="equipmentForm.value.status == 'Broken'">Status description:</label>
+        <textarea id="statusDescription" formControlName="statusDescription" *ngIf="equipmentForm.value.status == 'Broken'"
+                  [readOnly]="!editable || equipmentForm.value.status != 'Broken'"></textarea>
+      </div>
+    </div>
+    <button class="btn btn-klm" (click)="onExit()">Back</button>
+    <button class="btn btn-klm" *ngIf="!editable" (click)="onEdit()">Edit</button>
+    <button class="btn btn-danger" *ngIf="!editable" (click)="onDelete()">Delete</button>
+    <button class="btn btn-danger" *ngIf="editable" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-success" *ngIf="editable" (click)="onSave()">Save</button>
+  </form>
+</div>

@@ -1,0 +1,8 @@
+.equipment-map {
+  height: 40vh;
+  transition: height 2s;
+}
+
+agm-map {
+  height: 100%;
+}

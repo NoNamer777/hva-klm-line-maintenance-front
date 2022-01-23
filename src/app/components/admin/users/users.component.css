@@ -1,0 +1,20 @@
+.userRole {
+  display: inline;
+}
+
+.users {
+  border: #00a1de 1px solid;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.select:hover {
+  cursor: pointer;
+}
+
+button {
+  float: right;
+}

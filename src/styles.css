@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+/* KLM Blue = #00a1de*/
+
+/* Requests stroke Styling */
+button.btn-klm {
+  color: #fff ;
+  background-color: #00a1de ;
+  border-color: #00a1de ;
+}
+
+button.btn-klm:hover {
+  color: #fff ;
+  background-color: #007faa;
+  border-color: #007faa ;
+}
+
+/*Request table*/
+.request {
+  border: #00a1de 1px solid;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+}
+
+.request-header {
+  border-bottom: #00a1de 1px solid;
+}
+
+.request-header p {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.request-body label {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}
+
+.request-body p {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.request-btn-group {
+  margin-top: 0.5rem;
+}
+
+.request-btn-group button {
+  margin: 0 auto 0 auto;
+  max-width: 25rem;
+}
+
+input.input-invalid {
+  border-color:#dc3545;
+  padding-right:calc(1.5em + .75rem);
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+  background-repeat:no-repeat;
+  background-position:center right calc(.375em + .1875rem);
+  background-size:calc(.75em + .375rem) calc(.75em + .375rem)
+}
+
+/*Filter switch*/
+.switch-group {
+  border: #00a1de 1px solid;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+.filter-label {
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.switch-button {
+  color: #00a1de;
+  font-size: 0.8rem;
+}
+
+.mat-button-toggle-label-content {
+  line-height: 25px !important;
+}
+
+.mat-button-toggle-checked {
+  background-color: #00a1de;
+  color: #FFFFFF !important;
+}
+
+/*Equipment map*/
+.request-map-container {
+  height: 0;
+  transition: height 2s;
+}
+
+.show-map-container {
+  height: 30vh;
+}
+
+.request-map {
+  height: 100%;
+}
+
+agm-map {
+  height: 0;
+  transition: height 2s;
+}
+
+.show-location-map {
+  height: 100%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

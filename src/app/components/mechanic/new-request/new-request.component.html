@@ -1,0 +1,116 @@
+<div class="container request">
+  <form [formGroup]="requestForm">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Equipment:</label>
+          <select
+            formControlName="equipment"
+            class="form-control"
+            [ngClass]="{'is-invalid': requestForm.controls.equipment.touched && requestForm.controls.equipment.invalid}"
+          >
+            <option value="" selected>Select a Equipment</option>
+            <option *ngFor="let equipment of equipmentTypeList" [ngValue]="equipment">{{ equipment.group }}: {{ equipment.subgroup }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Aircraft Type:</label>
+          <select
+            formControlName="aircraft"
+            class="form-control"
+            [ngClass]="{'is-invalid': requestForm.controls.aircraft.touched && requestForm.controls.aircraft.invalid}"
+          >
+            <option value="" selected>Select a Aircraft Type</option>
+            <option *ngFor="let aircraft of aircrafts" [ngValue]="aircraft">{{ aircraft.name }}</option>
+          </select>
+        </div>
+      </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Requested Location:</label>
+            <select
+              formControlName="location"
+              class="form-control"
+              [ngClass]="{'is-invalid': requestForm.controls.location.touched && requestForm.controls.location.invalid}"
+            >
+              <option value="" selected>Select a Location</option>
+              <option *ngFor="let location of locations" [ngValue]="location">{{ location.location }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label>Departure Date:</label>
+            <div class="row">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="departureDate"
+                class="form-control col-8"
+                [ngClass]="{'is-invalid': requestForm.controls.departureDate.touched && requestForm.controls.departureDate.invalid}"
+              >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker class="col-4"></mat-datepicker>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Departure Time:</label>
+            <div class="row">
+              <input
+                type="number"
+                formControlName="departureHour"
+                class="form-control col-4"
+                [ngClass]="{'is-invalid': requestForm.controls.departureHour.touched && requestForm.controls.departureHour.invalid}"
+              >
+              <h4>:</h4>
+              <input
+                type="number"
+                formControlName="departureMinute"
+                class="form-control col-4"
+                [ngClass]="{'is-invalid': requestForm.controls.departureMinute.touched && requestForm.controls.departureMinute.invalid}"
+              >
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div *ngIf="isWheelCarSelected">
+      <div class="form-group" *ngFor="let wheel of wheelType">
+        <label>{{ wheel[0].toUpperCase() + wheel.slice(1) }} Wheel Amount:</label>
+        <input type="number" class="form-control" formControlName="{{ wheel }}WheelAmount">
+      </div>
+    </div>
+
+    <div *ngIf="selectedEquipmentTypeId === 1">
+      <div class="col-sm-12 equipment-map">
+        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="14.5">
+          <agm-marker
+            *ngFor="let nitrogenCart of availableNitrogenCartList"
+            [label]="nitrogenCart.id"
+            [latitude]="nitrogenCart.latitude"
+            [longitude]="nitrogenCart.longitude"
+            (markerClick)="onNitrogenMarkerClick(nitrogenCart)">
+          </agm-marker>
+        </agm-map>
+      </div>
+    </div>
+
+    <div class="form-btn-group">
+      <div class="row">
+        <div class="col-sm-12" [ngClass]="selectedEquipmentTypeId === 1 ? 'col-md-4' : 'col-md-6'">
+          <button type="button" class="btn btn-success btn-block" (click)="onRequestEquipment()">Request Equipment</button>
+        </div>
+        <div class="col-sm-12 col-md-4" *ngIf="selectedEquipmentTypeId === 1">
+          <button type="button" class="btn btn-klm btn-block" (click)="onPickUp()">Pick up</button>
+        </div>
+        <div class="col-sm-12" [ngClass]="selectedEquipmentTypeId === 1 ? 'col-md-4' : 'col-md-6'">
+          <button type="button" class="btn btn-danger btn-block" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

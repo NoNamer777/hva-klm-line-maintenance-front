@@ -1,0 +1,42 @@
+<div mat-dialog-title>
+  <h1>User details</h1>
+</div>
+
+<div mat-dialog-content>
+  <p class="invalidForm" *ngIf="invalid">The changes are invalid</p>
+
+  <form [formGroup]="userForm">
+    <div class="row">
+      <div class="col-4">
+        <label for="name">Name:</label>
+        <input type="text" id="name" [readOnly]="!editable" formControlName="name" required>
+      </div>
+
+      <div class="col-4">
+        <label for="role">Role:</label>
+        <p *ngIf="!editable">{{ userForm.value.role }}</p>
+        <select id="role" formControlName="role" *ngIf="editable">
+          <option *ngFor="let role of roles" [ngValue]="role.role">{{ role.role }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [readOnly]="!editable" formControlName="password" required>
+      </div>
+
+      <div class="col-4" *ngIf="passwordIsDirty()">
+        <label for="validatePassword">Validate password:</label>
+        <input type="password" id="validatePassword" formControlName="validatePassword" [required]="passwordIsDirty()">
+      </div>
+    </div>
+
+    <button class="btn btn-klm" (click)="onExit()">Back</button>
+    <button class="btn btn-klm" *ngIf="!editable" (click)="onEdit()">Edit</button>
+    <button class="btn btn-danger" *ngIf="!editable" (click)="onDelete()">Delete</button>
+    <button class="btn btn-danger" *ngIf="editable" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-success" *ngIf="editable" (click)="onSave()">Save</button>
+  </form>
+</div>

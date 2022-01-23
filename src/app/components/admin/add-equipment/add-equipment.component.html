@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="request">
+    <div class="equipment-header">
+      <h3>Add new equipment</h3>
+    </div>
+
+    <p class="invalidForm" *ngIf="invalidIdentifier">The serial number or id already exists</p>
+
+    <form [formGroup]="equipmentForm">
+      <div class="row">
+        <div class="col-4">
+          <label for="typeGroup">Group:</label>
+          <select id="typeGroup" formControlName="typeGroup">
+            <option *ngFor="let typeGroup of typeGroups" [ngValue]="typeGroup">{{ typeGroup }}</option>
+          </select>
+        </div>
+
+        <div class="col-4">
+          <label for="typeSubgroup">Subgroup:</label>
+          <select id="typeSubgroup" formControlName="typeSubgroup">
+            <option selected="selected">N/A</option>
+            <option *ngFor="let typeSubgroup of typeSubgroups" [ngValue]="typeSubgroup">{{ typeSubgroup }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div *ngIf="equipmentForm.value.typeSubgroup != 'N/A' && equipmentForm.value.typeSubgroup != null">
+        <div class="row">
+          <div class="col-4">
+            <label for="serialNumber">Serial number:</label>
+            <input id="serialNumber" formControlName="serialNumber" class="form-control" required>
+          </div>
+
+          <div class="col-4">
+            <label for="id">Id:</label>
+            <div>
+              <p class="equipmentId">{{ getAbbreviation() }}-</p>
+              <input type="number" id="id" formControlName="id" required>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <button (click)="onCancel()" class="btn btn-danger">Back</button>
+    <button (click)="onAddEquipment()" class="btn btn-klm">Add equipment</button>
+  </div>
+</div>

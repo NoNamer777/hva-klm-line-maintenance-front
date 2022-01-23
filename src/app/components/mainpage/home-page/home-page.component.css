@@ -1,0 +1,32 @@
+
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  margin: 6em auto;
+
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+:host {
+  background-image: url("src/assets/images/KLM-plane.jpg");
+
+
+  width: 100%;
+
+  position: absolute;
+  height: 70%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+
+

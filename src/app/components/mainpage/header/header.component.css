@@ -1,0 +1,15 @@
+.logo-group {
+  display: inline-flex;
+  height: 80px;
+  margin: 0 30px 0 30px;
+}
+
+.title {
+  font-family: "Courier New", Arial;
+  color: #00a1de;
+  font-weight: bold;
+  margin-top: 2.1rem;
+  margin-bottom: auto;
+  margin-left: 2rem;
+  font-size: 2rem;
+}

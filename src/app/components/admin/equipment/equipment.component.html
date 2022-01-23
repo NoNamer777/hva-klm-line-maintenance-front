@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="equipment">
+    <button class="btn btn-klm" routerLinkActive="active" routerLink="add-equipment">
+      Add equipment
+    </button>
+
+    <h1>Equipment overview</h1>
+
+    <div class="row">
+      <div class="col-2">
+        <h3>Id</h3>
+      </div>
+
+      <div class="col-4">
+        <h3>Group</h3>
+      </div>
+
+      <div class="col-3">
+        <h3>Subgroup</h3>
+      </div>
+
+      <div class="col-3">
+        <h3>Status</h3>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let equipment of equipmentList" class="equipment select" (click)="onViewEquipment(equipment)">
+    <ng-container *ngTemplateOutlet="equipmentOverview; context: {equipment: equipment}"></ng-container>
+  </div>
+</div>
+
+<ng-template #equipmentOverview let-equipment="equipment">
+  <div class="row">
+    <div class="col-2">
+      <h5>{{ equipment.id }}</h5>
+    </div>
+
+    <div class="col-4">
+      <h5>{{ equipment.type.group }}</h5>
+    </div>
+
+    <div class="col-3">
+      <h5>{{ equipment.type.subgroup }}</h5>
+    </div>
+
+    <div class="col-3">
+      <h5>{{ equipment.status }}</h5>
+    </div>
+  </div>
+</ng-template>

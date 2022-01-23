@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Confirm Equipment Delivery</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-4">
+      <label>Equipment:</label>
+      <h4>{{ request.equipmentType.subgroup}}</h4>
+
+      <label>Equipment ID:</label>
+      <h4>{{ request.equipment.id}}</h4>
+<!--      <label>Pick Up Location</label>-->
+<!--      <h4>{{ request.equipment.tracker }}</h4>-->
+    </div>
+    <div class="col-4">
+<!--      <label>Delivered By:</label>-->
+<!--      <h4>{{ request.runnerId }}</h4>-->
+      <label>Delivered At:</label>
+      <h4>{{ request.location.location }}</h4>
+    </div>
+    <div class="col-4">
+      <form [formGroup]="timeDeliveredForm">
+        <div class="form-group">
+          <label>Time Delivered:</label>
+          <label>Hour:
+            <input
+              type="number"
+              name="hour"
+              min="00"
+              max="23"
+              formControlName="hour"
+              class="form-control"
+              [ngClass]="{'input-invalid' : timeDeliveredForm.controls.hour.invalid}">
+          </label>
+          <label>Minute:
+            <input
+              type="number"
+              name="minute"
+              min="00"
+              max="59"
+              formControlName="minute"
+              class="form-control"
+              [ngClass]="{'input-invalid' : timeDeliveredForm.controls.minute.invalid}">
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+    <div class="col-sm-12 col-md-6">
+      <button class="btn btn-success btn-block" (click)="onConfirmDelivery()" [disabled]="timeDeliveredForm.invalid">Confirm Delivery</button>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <button class="btn btn-danger btn-block" (click)="onCancelConfirmation()">Cancel</button>
+    </div>
+</div>

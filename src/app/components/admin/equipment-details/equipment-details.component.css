@@ -1,0 +1,59 @@
+input {
+  width: 60%;
+  word-wrap: break-spaces;
+  border-radius: 4px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input:read-only {
+  border: none;
+  background: none;
+  color: black;
+  cursor: default;
+}
+
+select {
+  width: 100%;
+  border-radius: 4px;
+}
+
+textarea {
+  width: 100%;
+  word-wrap: break-spaces;
+  border-radius: 4px;
+  resize: none;
+}
+
+textarea:read-only {
+  border: none;
+  background: none;
+  color: black;
+  cursor: default;
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+button {
+  float: right;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+.invalidForm {
+  width: 100%;
+  border-bottom: #00a1de 1px solid;
+}
+
+h1 {
+  border-bottom: #00a1de 1px solid;
+}
+
+.equipmentId {
+  display: inline-block;
+}

@@ -1,0 +1,96 @@
+<div class="container" *ngIf="selfPickups.length > 0">
+  <p class="filter-label">My Self Pick Ups</p>
+  <div *ngFor="let request of selfPickups" class="request" (click)="request.status == 'IP'? onSelfPickUpClicked($event): null" [id]="request.id">
+    <ng-container *ngTemplateOutlet="requestTable; context: {request: request}"></ng-container>
+
+    <div class="request-map-container">
+      <div class="row request-map">
+        <div class="col-12">
+          <agm-map [latitude]="schipholLat" [longitude]="schipholLong" [zoom]="15">
+            <agm-marker [label]="request.equipment.id" [latitude]="request.equipment.latitude" [longitude]="request.equipment.longitude"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+
+    <div class="request-btn-group">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <button type="button" class="btn btn-klm btn-block"
+                  *ngIf="request.status == 'IP'"
+                  (click)="onCloseSelfPickUp(request.id)">Done Using Equipment
+          </button>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <button type="button" class="btn btn-danger btn-block"
+                  *ngIf="request.status == 'OP' || request.status == 'IP'"
+                  (click)="onCancelRequest(request.id)">Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div class="container">
+  <div>
+    <p class="filter-label">Filter Request By Status</p>
+    <mat-button-toggle-group appearance="legacy" class="switch-group">
+      <mat-button-toggle checked="true" (change)="onFilterRequestList($event.value)" class="switch-button" value="OP">Open</mat-button-toggle>
+      <mat-button-toggle (change)="onFilterRequestList($event.value)" class="switch-button" value="IP">In Progress</mat-button-toggle>
+      <mat-button-toggle (change)="onFilterRequestList($event.value)" class="switch-button" value="CL">Closed</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div *ngFor="let request of requests" class="request">
+    <ng-container *ngTemplateOutlet="requestTable; context: {request: request}"></ng-container>
+    <div class="request-btn-group">
+      <div class="row">
+        <div class="col-12">
+          <button type="button" class="btn btn-klm btn-block" *ngIf="request.status == 'CL'"
+                  (click)="onRequestPickUp(request.id)">Request Pick Up
+          </button>
+          <button type="button" class="btn btn-danger btn-block"
+                  *ngIf="request.status == 'OP' || request.status == 'IP'"
+                  (click)="onCancelRequest(request.id)">Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #requestTable let-request="request">
+  <div class="request-header">
+    <div class="row">
+      <div class="col-4">
+        <p>Request: {{ request.id }}</p>
+      </div>
+      <div class="col-3">
+        <p>Status: {{ request.status }}</p>
+      </div>
+      <div class="col-5">
+        <p> Departure: {{ request.departure | date:'short' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="request-body">
+    <div class="row">
+      <div class="col-4">
+        <label>Equipment:</label>
+        <p>{{ request.equipmentType.subgroup }}</p>
+      </div>
+      <div class="col-2">
+        <label>Need At:</label>
+        <p>{{ request.location.location }}</p>
+      </div>
+      <div class="col-3">
+        <label>Aircraft Type:</label>
+        <p>{{ request.aircraft.name }}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

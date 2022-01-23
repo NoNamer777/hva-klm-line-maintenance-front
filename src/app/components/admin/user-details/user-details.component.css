@@ -1,0 +1,37 @@
+h1 {
+  border-bottom: #00a1de 1px solid;
+}
+
+label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.invalidForm {
+  width: 100%;
+  border-bottom: #00a1de 1px solid;
+}
+
+button {
+  float: right;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+input {
+  width: 100%;
+  word-wrap: break-spaces;
+  border-radius: 4px;
+}
+
+input:read-only {
+  border: none;
+  background: none;
+  color: black;
+  cursor: default;
+}
+
+select {
+  width: 100%;
+  border-radius: 4px;
+}

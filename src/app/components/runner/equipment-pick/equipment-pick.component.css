@@ -1,0 +1,36 @@
+.mat-dialog-content {
+  height: 85%;
+}
+
+.row {
+  height: 100%;
+}
+
+agm-map {
+  height: 100%;
+  width: 100%;
+}
+
+.item-list {
+  margin: 0;
+  border: 1px solid #00a1de;
+  border-radius: 5px;
+  padding: 0;
+  overflow: scroll;
+  height: 500px;
+}
+
+.list-item {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.list-item p {
+  padding-left: 1rem;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.list-item-colored {
+  background-color: #00a1de;
+}

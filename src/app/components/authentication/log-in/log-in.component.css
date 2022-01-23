@@ -1,0 +1,106 @@
+.main {
+  background-color: #FFFFFF;
+  width: 400px;
+  height: 100%;
+  margin: 9.5em auto;
+  border-radius: 1.5em;
+  box-shadow: 0 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.sign {
+  padding-top: 40px;
+  color: #8C55AA;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+  background-color: #00a1de;
+}
+
+input {
+  width: 76%;
+  color: rgb(38, 50, 56);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(136, 126, 126, 0.04);
+  padding: 10px 20px;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.02);
+  margin-left: 46px;
+  text-align: center;
+  margin-bottom: 27px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+form.form1 {
+  padding-top: 40px;
+}
+
+p {
+  text-align: center;
+}
+
+.un:focus, .pass:focus {
+  border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.submit {
+  cursor: pointer;
+  border-radius: 5em;
+  color: #fff;
+  background-color: #00a1de;
+  border: 0;
+  padding: 10px 40px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-left: 35%;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+/*button[disabled] {*/
+/*  background-color: purple;*/
+/*  color: slategray;*/
+/*}*/
+
+button {
+  font-weight: bold;
+}
+
+.help-block {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 35px;
+  margin-top: -10px;
+}
+.loginText{
+  font-size: 30px;
+  text-align: center;
+
+
+}
+.incorrect{
+  color: red;
+  position: center;
+  margin-left: 72px;
+  font-size: 20px;
+}
+:host {
+  background-image: url("https://blog.klm.com/assets/uploads/2017/07/schiphol_32-copy-768x510.jpg");
+
+
+  width: 100%;
+
+  position: absolute;
+  height: 74%;
+
+  /* Center and scale the image nicely */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

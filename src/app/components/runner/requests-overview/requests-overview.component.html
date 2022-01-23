@@ -1,0 +1,54 @@
+<div class="container">
+  <div *ngFor="let request of requests" class="request">
+    <ng-container *ngTemplateOutlet="openRequests; context: {request: request}"></ng-container>
+  </div>
+</div>
+
+<ng-template #openRequests let-request="request">
+  <div class="request-header">
+    <div class="row">
+      <div class="col-4">
+        <p>Request: {{ request.id }}</p>
+      </div>
+      <div class="col-3">
+        <p>Type: {{ request['pickUp'] ? 'Pick Up' : 'Delivery' }}</p>
+      </div>
+      <div class="col-5">
+        <p> Departure: {{ request.departure | date:'short' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="request-body">
+    <div class="row">
+      <div class="col-4">
+        <label>Equipment:</label>
+        <p>{{ request.equipmentType.subgroup }}</p>
+      </div>
+      <div class="col-2">
+        <label>Need At:</label>
+        <p>{{ request.location.location }}</p>
+      </div>
+      <div class="col-3">
+        <label>Aircraft:</label>
+        <p>{{ request.aircraft.name }}</p>
+      </div>
+      <div class="col-3">
+        <label>Pick Up:</label>
+        <p *ngIf="request.equipment != null">{{ request.equipment.id }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="request-btn-group">
+    <div class="row">
+      <div class="col-sm-12" [ngClass]="{'col-md-6': !request['pickUp']}">
+        <button type="button" class="btn btn-klm btn-block" (click)="onAcceptRequest(request)">Accept</button>
+      </div>
+      <div class="col-sm-12 col-md-6" *ngIf="!request['pickUp']">
+        <button type="button" class="btn btn-klm btn-block" (click)="onChangeRecommended(request)">
+          Change {{ request.equipmentType.subgroup }}</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

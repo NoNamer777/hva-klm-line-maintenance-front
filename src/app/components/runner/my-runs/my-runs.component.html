@@ -1,0 +1,72 @@
+<div class="container">
+  <div>
+    <p class="filter-label">Filter Request By Status</p>
+    <mat-button-toggle-group appearance="legacy" class="switch-group">
+      <mat-button-toggle checked (change)="getFilteredRequestList($event.value)" class="switch-button" value="IP">In Progress</mat-button-toggle>
+      <mat-button-toggle (change)="getFilteredRequestList($event.value)" class="switch-button" value="CL">Closed</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div *ngFor="let request of requests" class="request" (click)="request.status == 'IP'? onRunClicked($event): null" [id]="request.id">
+    <div class="request-header">
+      <div class="row">
+        <div class="col-4">
+          <p>Request: {{ request.id }}</p>
+        </div>
+        <div class="col-3">
+          <p>Status: {{ request.status }}</p>
+        </div>
+        <div class="col-5">
+          <p> Departure: {{ request.departure | date:'short' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="request-body">
+      <div class="row">
+        <div class="col-3">
+          <label>Equipment:</label>
+          <p>{{ request.equipmentType.subgroup }}</p>
+        </div>
+        <div class="col-3">
+          <label>Equipment ID:</label>
+          <p>{{ request.equipment.id }}</p>
+        </div>
+        <div class="col-3">
+          <label>Aircraft:</label>
+          <p>{{ request.aircraft.name }}</p>
+        </div>
+        <div class="col-3">
+          <label>Need At:</label>
+          <p>{{ request.location.location }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="request-map-container">
+      <div class="row request-map">
+        <div class="col-12">
+          <agm-map [latitude]="schipholLat" [longitude]="schipholLong" [zoom]="15">
+            <agm-marker [latitude]="request.equipment.latitude" [longitude]="request.equipment.longitude"></agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+
+    <div class="request-btn-group" *ngIf="request.status == 'IP'">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <button
+            type="button"
+            class="btn btn-success btn-block"
+            (click)="onDelivered(request)">Delivered
+          </button>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <button type="button" class="btn btn-danger btn-block" (click)="onCanceledRun(request.id)">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

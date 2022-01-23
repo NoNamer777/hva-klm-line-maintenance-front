@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="users">
+    <button class="btn btn-klm" routerLinkActive="active" routerLink="add-user">
+      Add user
+    </button>
+
+    <h1>User overview</h1>
+
+    <div class="row">
+      <div class="col-3">
+        <h3>Id</h3>
+      </div>
+
+      <div class="col-4">
+        <h3>Name</h3>
+      </div>
+
+      <div class="col-3">
+        <h3>Role</h3>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let user of users" class="users select" (click)="onViewUser(user)">
+    <ng-container *ngTemplateOutlet="equipmentOverview; context: {user: user}"></ng-container>
+  </div>
+</div>
+
+<ng-template #equipmentOverview let-user="user">
+  <div class="row">
+    <div class="col-3 container-info">
+      <h5>{{ user.id }}</h5>
+    </div>
+    <div class="col-4">
+      <h5>{{ user.name }}</h5>
+    </div>
+    <div class="col-3">
+      <h5 *ngIf="user.role === 'ADM'">Administrator</h5>
+      <h5 *ngIf="user.role === 'RUN'">Runner</h5>
+      <h5 *ngIf="user.role === 'GE'">Ground Engineer</h5>
+    </div>
+  </div>
+</ng-template>
